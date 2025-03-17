@@ -1,0 +1,51 @@
+.Dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.IconMenu {
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+}
+
+.IconMenu:hover{
+    color: #4A4A4A;
+}
+
+.SubMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    max-height: 250px;
+    overflow-y: auto;
+    width: fit-content;
+    gap: 2px;
+    border-radius: 10px;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    box-shadow: 0px 4px 10px var(--sub-beige);
+    z-index: 1000;
+}
+
+.SubMenu::-webkit-scrollbar {
+    display: none;
+}
+
+.SubMenuItem {
+    width: 250px;
+    height: fit-content;
+    text-align: left;
+    padding-left: 13px;
+    padding-right: 13px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: var(--primary-light);
+    cursor: pointer;
+}
+
+.SubMenuItem:hover {
+    background-color: var(--sub-beige);
+    color: var(--primary-light);
+} 

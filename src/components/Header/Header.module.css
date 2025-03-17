@@ -1,0 +1,87 @@
+.Header {
+    width: 100%;
+    height: fit-content;
+    background-color: var(--primary-light);
+    position: sticky;
+    display: flex;
+    align-items: center;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    justify-content: space-between;
+    box-shadow: 0px 2px 5px var(--sub-beige);
+}
+
+.HeaderLeft {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    gap: 15px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.HeaderRight {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    gap: 61px;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.Logo {
+    width: 220px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.SearchBarContainer {
+    display: flex;
+    align-items: center;
+    background: #f6f6f6;
+    border-radius: 4px;
+    width: 513px;
+    padding: 16px;
+    height: fit-content;
+}
+
+.SearchBarInput {
+    border: none;
+    outline: none;
+    background: transparent;
+    flex: 1;
+    font-size: 18px;
+    font-weight: 500;
+    height:fit-content;
+    width: max-content;
+}
+
+.SignButton {
+    height: fit-content;
+    width: fit-content;
+    border-radius: 4px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: var(--primary-light);
+    cursor: pointer;
+}
+
+.SignButton:hover{
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+}
+
+.IconMenu {
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+}
+
+.IconMenu:hover{
+    color: #4A4A4A;
+}
