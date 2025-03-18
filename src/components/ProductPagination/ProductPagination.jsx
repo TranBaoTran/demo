@@ -2,10 +2,18 @@ import React from 'react';
 import { Link, useParams } from "react-router-dom";
 import styles from './ProductPagination.module.css';
 
-const ProductPagination = ({ totalPages }) => {
+const ProductPagination = ({ totalPages, pageDisplay }) => {
   const { page } = useParams();
   const currentPage = Number(page) || 1;
-  const pages = [...Array(totalPages).keys()].map((num) => num + 1);
+  let startPage = Math.max(1, currentPage - Math.floor(pageDisplay / 2));
+  let endPage = Math.min(totalPages, startPage + pageDisplay - 1);
+  if (endPage - startPage < pageDisplay - 1) {
+    startPage = Math.max(1, endPage - pageDisplay + 1);
+  }
+  const pages = [];
+  for (let i = startPage; i <= endPage; i++) {
+    pages.push(i);
+  }
   
   return (
     <>

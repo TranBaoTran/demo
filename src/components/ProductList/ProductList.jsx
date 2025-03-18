@@ -11,12 +11,12 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [totalProduct,setTotalProduct] = useState(0);
   const productPerPage = 12;
+  const pageDisplay = 6;
   const [totalPage,setTotalPage] = useState(1);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        console.log(currentPage);
         const response = await productApi.getAll(currentPage, productPerPage);
         setProducts(response?.data.products || []);
         setTotalProduct(response?.data.total || 0);
@@ -41,7 +41,7 @@ const ProductList = () => {
       </div>   
       <ProductPagination 
         totalPages = {totalPage}
-        currentPage = {currentPage}
+        pageDisplay = {pageDisplay}
       />
     </>  
   )  
