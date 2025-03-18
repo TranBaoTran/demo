@@ -1,14 +1,32 @@
+import Layout from "./pages/Layout"
+import ProductList from "./components/ProductList/ProductList"
 import './App.css'
-import Header from './components/Header/Header'
-import ProductList from './components/ProductList/ProductList'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <ProductList />,
+        },
+        {
+          path: "products/:page?",
+          element: <ProductList />,
+        },
+      ],
+    },
+  ]
+);
 
 function App() {
-  return (
-    <>
-      <Header />
-      <ProductList />
-    </>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App
