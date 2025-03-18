@@ -45,6 +45,11 @@
     cursor: pointer;
 }
 
+.SubMenuLink {
+    text-decoration: none;
+    color: var(--primary-dark);
+}
+
 .SubMenuItem:hover {
     background-color: var(--sub-beige);
     color: var(--primary-light);

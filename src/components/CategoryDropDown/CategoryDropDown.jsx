@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import styles from './CategoryDropDown.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -28,7 +29,9 @@ const CategoryDropDown = () => {
         {isOpen && (
           <ul className={styles.SubMenu}>
             {categories.map((category) => (
-              <li key={category.slug} className={styles.SubMenuItem}>{category.name}</li>
+              <li key={category.slug} className={styles.SubMenuItem}>
+                <Link className={styles.SubMenuLink} onClick={() => setIsOpen(!isOpen)} to={`/products?category=${category.slug}`}>{category.name}</Link>
+              </li>
             ))}
           </ul>
         )}

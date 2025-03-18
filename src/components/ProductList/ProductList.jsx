@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import styles from './ProductList.module.css';
 import ProductItem from '../ProductItem/ProductItem';
 import productApi from '../../api/productApi';
 import ProductPagination from '../ProductPagination/ProductPagination';
 
 const ProductList = () => {
-  const { page } = useParams();
-  const currentPage = Number(page) || 1;
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get("category") || "";
+  const currentPage = Number(searchParams.get("page")) || 1;
   const [products, setProducts] = useState([]);
   const [totalProduct,setTotalProduct] = useState(0);
   const productPerPage = 12;
@@ -17,7 +18,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await productApi.getAll(currentPage, productPerPage);
+        const response = await productApi.getAll(currentPage, productPerPage, category);
         setProducts(response?.data.products || []);
         setTotalProduct(response?.data.total || 0);
       } catch (error) {
@@ -26,7 +27,7 @@ const ProductList = () => {
     };
 
     fetchProducts();
-  }, [currentPage]);
+  }, [currentPage, category]);
 
   useEffect(() => {
     setTotalPage(Math.ceil(totalProduct / productPerPage));
@@ -42,6 +43,8 @@ const ProductList = () => {
       <ProductPagination 
         totalPages = {totalPage}
         pageDisplay = {pageDisplay}
+        category= {category}
+        currentPage={currentPage}
       />
     </>  
   )  
