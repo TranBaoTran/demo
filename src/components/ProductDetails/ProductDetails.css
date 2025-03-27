@@ -1,0 +1,296 @@
+.pd-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.pd-flex-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+  
+@media (min-width: 768px) {
+  .pd-flex-wrapper {
+    flex-direction: row;
+  }
+
+  .pd-image-column {
+      flex: 0 0 35%;
+    }
+  
+  .pd-info-column {
+    flex: 0 0 65%;
+  }
+}
+  
+.pd-image-container,
+.pd-info-container {
+  flex: 1;
+  padding: 1rem;
+}
+
+/* CSS ProductImage.jsx */
+.pd-thumbnail {
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+  
+.pd-gallery {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+  
+.pd-gallery-image {
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+  
+.pd-gallery-image:hover {
+  transform: scale(1.05);
+}
+
+/* CSS ProductInfo.jsx */
+.pd-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.pd-description {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.pd-inline-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #D4AF37;
+}
+
+.pd-link {
+  font-size: 0.8rem;
+  color: #1d4ed8;
+  text-decoration: underline;
+  display: inline-block;
+  margin-left: 0.3rem;
+}
+
+.pd-stars {
+  display: inline-flex;
+  gap: 2px;
+  font-size: 1.1rem;
+}
+
+.pd-star-wrapper {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+}
+
+.pd-star-base {
+  color: #e5e7eb;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.pd-star-fill {
+  color: #facc15; /* vàng */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.pd-price-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.pd-price {
+  color: #ef4444; /* đỏ nổi bật */
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.pd-old-price {
+  color: #9ca3af; /* xám nhạt */
+  text-decoration: line-through;
+  font-size: 0.9rem;
+}
+
+.pd-discount {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.pd-details-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.pd-details-group strong {
+  font-size: 14px;
+  color: #4a4a4a;
+}
+
+.pd-details-group span {
+  font-size: 14px;
+  color: #555;
+}
+
+.pd-info-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.pd-info-row strong {
+  font-size: 14px;
+  color: #4a4a4a;
+}
+
+.pd-info-row span {
+  font-size: 14px;
+  color: #555;
+  margin-left: 10px;
+}
+
+.pd-info-icon {
+  margin-right: 8px;
+  color: #2ecc71; /* Icon color */
+}
+
+.pd-availability {
+  font-size: 0.95rem;
+  color: #b45309;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.pd-action-section {
+  margin-top: 1rem;
+  max-width: 70%;
+}
+
+.pd-quantity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pd-quantity strong {
+  font-size: 0.95rem;
+  color: #4A4A4A;
+}
+
+.pd-quantity-control {
+  display: flex;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.pd-quantity-control button {
+  background: #f9fafb;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #374151;
+}
+
+.pd-quantity-control input {
+  width: 3rem;
+  text-align: center;
+  border: none;
+  outline: none;
+}
+
+.pd-stock {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.pd-buttons {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.pd-btn-outline {
+  border: 1px solid #D4AF37;
+  color: #D4AF37;
+  background: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.pd-btn-primary {
+  background-color: #D4AF37;
+  color: white;
+  border: none;
+  padding: 0.6rem 3rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+  
+/* CSS ProductReview.jsx */
+.pd-reviews-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.pd-review-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.pd-review {
+  border-bottom: 1px solid #ddd;
+  padding: 0.5rem 0;
+}
+
+.pd-review-name {
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.pd-review-comment {
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 0.2rem;
+}
+
+.pd-review-date {
+  font-size: 0.75rem;
+  color: #999;
+}

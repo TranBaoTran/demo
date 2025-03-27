@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSearchParams } from "react-router-dom";
 import styles from './ProductList.module.css';
 import ProductItem from '../ProductItem/ProductItem';
@@ -14,6 +15,13 @@ const ProductList = () => {
   const productPerPage = 12;
   const pageDisplay = 6;
   const [totalPage,setTotalPage] = useState(1);
+  const navigate = useNavigate();
+
+  // Hàm xử lý khi click vào sản phẩm
+  const handleProductClick = (product) => {
+    // Chuyển hướng đến trang chi tiết sản phẩm và truyền product qua state
+    navigate('/product/detail', { state: { product } });
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -37,7 +45,9 @@ const ProductList = () => {
     <>
       <div className={styles.ProductListContainer}>
         {products.map(product => 
-          <ProductItem key={product.id} product={product} />
+          <div key={product.id} onClick={() => handleProductClick(product)}>
+            <ProductItem product={product} />
+          </div>
         )}
       </div>   
       <ProductPagination 

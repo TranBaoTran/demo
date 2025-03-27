@@ -1,5 +1,6 @@
 import Layout from "./pages/Layout"
 import ProductList from "./components/ProductList/ProductList"
+import ProductDetails from "./components/ProductDetails/ProductDetails"
 import './App.css'
 import {
   createBrowserRouter,
@@ -14,11 +15,15 @@ const router = createBrowserRouter(
       children: [
         {
           index: true,
-          element: <ProductList />,
+          element: <ProductList  />,
         },
         {
           path: "products",
-          element: <ProductList />, 
+          element: <ProductList  />, 
+        },
+        {
+          path: "product/detail",
+          element: <ProductDetails />, 
         },
       ],
     },
