@@ -1,10 +1,14 @@
 import Layout from "./pages/Layout"
 import ProductList from "./components/ProductList/ProductList"
+import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
+import ForgotPassWord from "./components/Auth/ForgotPassWord";
 import './App.css'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
 
 const router = createBrowserRouter(
   [
@@ -19,6 +23,18 @@ const router = createBrowserRouter(
         {
           path: "products",
           element: <ProductList />, 
+        },
+        {
+          path: "login",
+          element: <Login />,
+        },
+        {
+          path: "forgotpassword",
+          element: <ForgotPassWord />,
+        },
+        {
+          path: "register",
+          element: <Register />,
         },
       ],
     },
