@@ -14,41 +14,41 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError({ username: '', email: '', password: '', confirmPassword: '' }); // Reset lỗi
+    setError({ username: '', email: '', password: '', confirmPassword: '' }); // Reset errors
 
     let valid = true;
 
     if (!username) {
-      setError(prev => ({ ...prev, username: 'Vui lòng nhập tên tài khoản.' }));
+      setError(prev => ({ ...prev, username: 'Please enter your username.' }));
       valid = false;
     }
 
     if (!email) {
-      setError(prev => ({ ...prev, email: 'Vui lòng nhập email.' }));
+      setError(prev => ({ ...prev, email: 'Please enter your email.' }));
       valid = false;
     } else {
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailPattern.test(email)) {
-        setError(prev => ({ ...prev, email: 'Vui lòng nhập địa chỉ email hợp lệ.' }));
+        setError(prev => ({ ...prev, email: 'Please enter a valid email address.' }));
         valid = false;
       }
     }
 
     if (!password) {
-      setError(prev => ({ ...prev, password: 'Vui lòng nhập mật khẩu.' }));
+      setError(prev => ({ ...prev, password: 'Please enter your password.' }));
       valid = false;
     }
 
     if (!confirmPassword) {
-      setError(prev => ({ ...prev, confirmPassword: 'Vui lòng xác nhận mật khẩu.' }));
+      setError(prev => ({ ...prev, confirmPassword: 'Please confirm your password.' }));
       valid = false;
     } else if (password !== confirmPassword) {
-      setError(prev => ({ ...prev, confirmPassword: 'Mật khẩu xác nhận không khớp.' }));
+      setError(prev => ({ ...prev, confirmPassword: 'Passwords do not match.' }));
       valid = false;
     }
 
     if (valid) {
-      console.log('Đăng ký với:', { username, email, password });
+      console.log('Registering with:', { username, email, password });
     }
   };
 
@@ -57,15 +57,15 @@ const Register = () => {
     <Link to="/"><IoArrowBack className='back-icon'/></Link>
     <div className="auth-container">
       <div className="form-section">
-        <h2>Đăng ký</h2>
-        <p className="form-description">Đăng ký tài khoản mới</p>
+        <h2>Signup</h2>
+        <p className="form-description">Create a new account</p>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-          <label><span className="required">* </span>Tài khoản</label>
+          <label><span className="required">* </span>Username</label>
             {error.username && <span className="error-message">{error.username}</span>}
             <input 
               type="text" 
-              placeholder="Nhập tài khoản của bạn" 
+              placeholder="Enter your username" 
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -75,32 +75,32 @@ const Register = () => {
             {error.email && <span className="error-message">{error.email}</span>}
             <input 
               type="email" 
-              placeholder="Nhập email của bạn" 
+              placeholder="Enter your email" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="form-group">
-          <label><span className="required">* </span>Mật khẩu</label>
+          <label><span className="required">* </span>Password</label>
             {error.password && <span className="error-message">{error.password}</span>}
             <input 
               type="password" 
-              placeholder="Nhập mật khẩu" 
+              placeholder="Enter your password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="form-group">
-          <label><span className="required">* </span>Xác nhận mật khẩu</label>
+          <label><span className="required">* </span>Confirm Password</label>
             {error.confirmPassword && <span className="error-message">{error.confirmPassword}</span>}
             <input 
               type="password" 
-              placeholder="Nhập lại mật khẩu" 
+              placeholder="Re-enter your password" 
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
-          <button type="submit" className="submit-button">Đăng ký</button>
+          <button type="submit" className="submit-button">Signup</button>
         </form>
         <div className="social-buttons">
           <button className="icon-button" style={{ color: '#000' }}><FaFacebookF style={{ color: '#3b5998' }} /></button>
@@ -109,13 +109,13 @@ const Register = () => {
           <button className="icon-button" style={{ color: '#000' }}><AiOutlineClose style={{ color: '#000' }} /></button>
         </div>
         <div className="register-info">
-          <p>Bạn đã có tài khoản?</p>
-          <a href="/login">Đăng nhập</a>
+          <p>Already have an account?</p>
+          <a href="/login">Login</a>
         </div>
       </div>
 
       <div className="image-section">
-        <img src='/Register.png' alt='Register' className="register-image" />
+        <img src='/Signup.png' alt='Register' className="register-image" />
       </div>
     </div>
     </div>
