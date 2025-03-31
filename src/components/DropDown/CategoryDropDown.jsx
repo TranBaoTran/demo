@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import styles from './CategoryDropDown.module.css';
+import styles from './DropDown.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import productApi from '../../api/productApi';
@@ -24,7 +24,7 @@ const CategoryDropDown = () => {
 
   return(
     <>
-      <div className={styles.Dropdown}>
+      <div className={styles.Dropdown} >
         <FontAwesomeIcon icon={faBars} className={styles.IconMenu} onClick={() => setIsOpen(!isOpen)}/>
         {isOpen && (
           <ul className={styles.SubMenu}>

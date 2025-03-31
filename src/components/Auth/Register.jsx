@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { FaFacebookF, FaInstagram, FaGoogle } from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai'; 
+import { IoArrowBack } from "react-icons/io5";
 import './Auth.css'; // Import CSS chung
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -51,6 +53,8 @@ const Register = () => {
   };
 
   return (
+    <div className='outer-container'>
+    <Link to="/"><IoArrowBack className='back-icon'/></Link>
     <div className="auth-container">
       <div className="form-section">
         <h2>Đăng ký</h2>
@@ -113,6 +117,7 @@ const Register = () => {
       <div className="image-section">
         <img src='/Register.png' alt='Register' className="register-image" />
       </div>
+    </div>
     </div>
   );
 };

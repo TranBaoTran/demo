@@ -2,11 +2,22 @@ import React from 'react';
 import styles from './Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faMagnifyingGlass, faPhone } from '@fortawesome/free-solid-svg-icons';
-import CategoryDropDown from '../CategoryDropDown/CategoryDropDown';
-import { Link } from "react-router-dom";
+import CategoryDropDown from '../DropDown/CategoryDropDown';
+import { Link, useNavigate } from "react-router-dom";
+import UserDropDown from '../DropDown/UserDropDown';
+import { getToken } from '../../api/axiosClient';
 
-const Header = () => (
-  <nav className={styles.Header}>
+const Header = () => {
+  const navigate = useNavigate();
+  const token = getToken();
+
+  const handleClick = (direction, isReplace) => {
+    navigate(direction, {replace: isReplace});
+  };
+
+  return (
+    <>
+    <nav className={styles.Header}>
 
     <div className={styles.HeaderLeft}>
       <Link to="/">
@@ -22,9 +33,17 @@ const Header = () => (
     <div className={styles.HeaderRight}>
       <FontAwesomeIcon icon={faCartShopping} className={styles.IconMenu} alt='Cart'/>
       <FontAwesomeIcon icon={faPhone} className={styles.IconMenu} />
-      <button className={styles.SignButton}>Sign In / Sign Up</button>
+      {token ? (
+        <UserDropDown />
+      ) : (
+        <button className={styles.SignButton} onClick={() => handleClick("/login", true)}>
+          Sign In / Sign Up
+        </button>
+      )}
     </div>
-  </nav>
-);
+    </nav>
+    </>
+  ) 
+};
 
 export default Header;

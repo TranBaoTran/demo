@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
 import { FaFacebookF, FaInstagram, FaGoogle } from 'react-icons/fa';
+import { IoArrowBack } from "react-icons/io5";
 import { AiOutlineClose } from 'react-icons/ai'; 
-import './Auth.css'; // Import CSS chung
+import './Auth.css'; 
+import { Link, useNavigate } from 'react-router-dom';
+import authApi from '../../api/authApi';
+import { storeToken } from '../../api/axiosClient';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState({ email: '', password: '' });
+  const navigate = useNavigate();
+
+  const handleLogin = async (email, password) => {
+    try {
+      const userData = await authApi.login(email, password);
+      storeToken(userData.data.accessToken);
+      navigate('/');
+    } catch (error) {
+      alert('Wrong username or password.')
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,11 +33,11 @@ const Login = () => {
       valid = false;
     }
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-      setError((prev) => ({ ...prev, email: 'Vui lòng nhập địa chỉ email hợp lệ.' }));
-      valid = false;
-    }
+    // const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // if (!emailPattern.test(email)) {
+    //   setError((prev) => ({ ...prev, email: 'Vui lòng nhập địa chỉ email hợp lệ.' }));
+    //   valid = false;
+    // }
 
     if (!password) {
       setError((prev) => ({ ...prev, password: 'Vui lòng nhập mật khẩu.' }));
@@ -30,11 +45,13 @@ const Login = () => {
     }
 
     if (valid) {
-      console.log('Đăng nhập với:', { email, password });
+      handleLogin(email.trim(), password);
     }
   };
 
   return (
+    <div className='outer-container'>
+    <Link to="/"><IoArrowBack className='back-icon'/></Link>
     <div className="auth-container">
       <div className="form-section">
         <h2>Đăng nhập</h2>
@@ -60,11 +77,6 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="checkbox-group">
-            <input type="checkbox" id="remember-me" />
-            <label htmlFor="remember-me">Lưu mật khẩu</label>
-          </div>
-          <p className="forgot-password"><a href='/forgotpassword'>Quên mật khẩu?</a></p>
           <button type="submit" className="submit-button">Đăng nhập</button>
         </form>
         <div className="social-buttons">
@@ -82,6 +94,7 @@ const Login = () => {
       <div className="image-section">
         <img src='/Login.png' alt='Logo' className="login-image" />
       </div>
+    </div>
     </div>
   );
 };
