@@ -74,6 +74,10 @@
     margin-right: 5px; /* Khoảng cách bên phải cho checkbox */
 }
 
+.pass-input-container {
+    position: relative;
+}
+
 .form-group input {
     width: 100%;
     padding-top: 10px;
@@ -151,8 +155,19 @@ button:hover {
 .back-icon {
     top: 5px;
     left: 10px;
-    z-index: 1000%;
+    z-index: 1000;
     position: fixed;
     font-size: 30px;
     cursor: pointer;
 }
+
+.pass-icon {
+    top: 50%;
+    position: absolute;
+    z-index: 1000;
+    right: 10px;
+    cursor: pointer;
+    transform: translateY(-50%);
+    color: var(--sub-gray);
+}
+

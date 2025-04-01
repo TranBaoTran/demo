@@ -4,6 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { IoArrowBack } from "react-icons/io5";
 import './Auth.css'; // Import CSS chung
 import { Link } from 'react-router-dom';
+import PasswordInput from './PasswordInput';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -83,21 +84,19 @@ const Register = () => {
           <div className="form-group">
           <label><span className="required">* </span>Password</label>
             {error.password && <span className="error-message">{error.password}</span>}
-            <input 
-              type="password" 
-              placeholder="Enter your password" 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+              <PasswordInput 
+                password = {password}
+                warning = "Enter your password!"
+                setPassword = {setPassword}
+              />
           </div>
           <div className="form-group">
           <label><span className="required">* </span>Confirm Password</label>
             {error.confirmPassword && <span className="error-message">{error.confirmPassword}</span>}
-            <input 
-              type="password" 
-              placeholder="Re-enter your password" 
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+            <PasswordInput 
+              password = {confirmPassword}
+              warning = "Re-enter your password" 
+              setPassword = {setConfirmPassword}
             />
           </div>
           <button type="submit" className="submit-button">Signup</button>

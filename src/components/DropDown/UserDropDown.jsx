@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './DropDown.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { clearToken, getToken } from '../../api/axiosClient';
+import authApi from '../../api/authApi';
 
 const UserDropDown = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState();
 
   const handleClick = () => {
     if(getToken()){
@@ -14,10 +14,33 @@ const UserDropDown = () => {
     }
   }
 
+  useEffect(() => {
+    const fetchMe = async () => {
+      try{
+        const response = await authApi.getMe()
+        setUser(response.data)
+      }catch(error){
+        console.log('Error getting user: ', error);
+      }
+    }
+
+    if(!user){
+      fetchMe();
+    }
+  }, [user]); 
+
   return(
     <>
       <div className={styles.Dropdown}>
-        <FontAwesomeIcon icon={faUser} className={styles.IconMenu} onClick={() => setIsOpen(!isOpen)}/>
+        <div
+        className={styles.UserContainer} 
+        onClick={() => setIsOpen(!isOpen)}>
+        <img 
+          className={styles.UserImage} 
+          src={user?.image}
+          ></img>
+          <span className={styles.UserName}>{user?.firstName} {user?.lastName}</span>
+        </div>  
         {isOpen && (
           <ul className={`${styles.SubMenu} ${styles.SubMenuRight}`}>
             <li className={`${styles.SubMenuItem} ${styles.UserSubMenuItem}`}>Account</li>

@@ -6,6 +6,7 @@ import './Auth.css';
 import { Link, useNavigate } from 'react-router-dom';
 import authApi from '../../api/authApi';
 import { storeToken } from '../../api/axiosClient';
+import PasswordInput from './PasswordInput';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -64,11 +65,10 @@ const Login = () => {
             <div className="form-group">
               <label><span className="required">* </span>Password</label>
               {error.password && <span className="error-message">{error.password}</span>}
-              <input 
-                type="password" 
-                placeholder="Enter your password!" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+              <PasswordInput 
+                password = {password}
+                warning = "Enter your password!"
+                setPassword = {setPassword}
               />
             </div>
             <button type="submit" className="submit-button">Login</button>
