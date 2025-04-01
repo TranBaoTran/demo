@@ -1,86 +1,93 @@
 import React, { useState } from 'react';
 import { FaFacebookF, FaInstagram, FaGoogle } from 'react-icons/fa';
+import { IoArrowBack } from "react-icons/io5";
 import { AiOutlineClose } from 'react-icons/ai'; 
-import './Auth.css'; // Import CSS chung
+import './Auth.css'; 
+import { Link, useNavigate } from 'react-router-dom';
+import authApi from '../../api/authApi';
+import { storeToken } from '../../api/axiosClient';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState({ email: '', password: '' });
+  const [error, setError] = useState({ username: '', password: '' });
+  const navigate = useNavigate();
+
+  const handleLogin = async (username, password) => {
+    try {
+      const userData = await authApi.login(username, password);
+      storeToken(userData.data.accessToken);
+      navigate('/');
+    } catch (error) {
+      alert('Wrong username or password.');
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError({ email: '', password: '' }); // Reset lỗi
+    setError({ username: '', password: '' }); // Reset errors
 
     let valid = true;
-    if (!email) {
-      setError((prev) => ({ ...prev, email: 'Vui lòng nhập tài khoản.' }));
-      valid = false;
-    }
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-      setError((prev) => ({ ...prev, email: 'Vui lòng nhập địa chỉ email hợp lệ.' }));
+    if (!username) {
+      setError((prev) => ({ ...prev, username: 'Please enter your username.' }));
       valid = false;
     }
 
     if (!password) {
-      setError((prev) => ({ ...prev, password: 'Vui lòng nhập mật khẩu.' }));
+      setError((prev) => ({ ...prev, password: 'Please enter your password.' }));
       valid = false;
     }
 
     if (valid) {
-      console.log('Đăng nhập với:', { email, password });
+      handleLogin(username.trim(), password);
     }
   };
 
   return (
-    <div className="auth-container">
-      <div className="form-section">
-        <h2>Đăng nhập</h2>
-        <p className="form-description">Nhập tài khoản và mật khẩu để đăng nhập hệ thống</p>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label><span className="required">* </span>Tài khoản</label>
-            {error.email && <span className="error-message">{error.email}</span>}
-            <input 
-              type="text" 
-              placeholder="Nhập email của bạn" 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+    <div className='outer-container'>
+      <Link to="/"><IoArrowBack className='back-icon'/></Link>
+      <div className="auth-container">
+        <div className="form-section">
+          <h2>Login</h2>
+          <p className="form-description">Enter your username and password to log in.</p>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label><span className="required">* </span>Username</label>
+              {error.username && <span className="error-message">{error.username}</span>}
+              <input 
+                type="text" 
+                placeholder="Enter your username" 
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label><span className="required">* </span>Password</label>
+              {error.password && <span className="error-message">{error.password}</span>}
+              <input 
+                type="password" 
+                placeholder="Enter your password!" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button type="submit" className="submit-button">Login</button>
+          </form>
+          <div className="social-buttons">
+            <button className="icon-button" style={{ color: '#000' }}><FaFacebookF style={{ color: '#3b5998' }} /></button>
+            <button className="icon-button" style={{ color: '#000' }}><FaInstagram style={{ color: '#C13584' }} /></button>
+            <button className="icon-button" style={{ color: '#000' }}><FaGoogle style={{ color: '#DB4437' }} /></button>
+            <button className="icon-button" style={{ color: '#000' }}><AiOutlineClose style={{ color: '#000' }} /></button>
           </div>
-          <div className="form-group">
-            <label><span className="required">* </span>Mật khẩu</label>
-            {error.password && <span className="error-message">{error.password}</span>}
-            <input 
-              type="password" 
-              placeholder="Nhập mật khẩu !" 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+          <div className="register-info">
+            <p>Don't have an account?</p>
+            <a href="/register">Sign up</a>
           </div>
-          <div className="checkbox-group">
-            <input type="checkbox" id="remember-me" />
-            <label htmlFor="remember-me">Lưu mật khẩu</label>
-          </div>
-          <p className="forgot-password"><a href='/forgotpassword'>Quên mật khẩu?</a></p>
-          <button type="submit" className="submit-button">Đăng nhập</button>
-        </form>
-        <div className="social-buttons">
-          <button className="icon-button" style={{ color: '#000' }}><FaFacebookF style={{ color: '#3b5998' }} /></button>
-          <button className="icon-button" style={{ color: '#000' }}><FaInstagram style={{ color: '#C13584' }} /></button>
-          <button className="icon-button" style={{ color: '#000' }}><FaGoogle style={{ color: '#DB4437' }} /></button>
-          <button className="icon-button" style={{ color: '#000' }}><AiOutlineClose style={{ color: '#000' }} /></button>
         </div>
-        <div className="register-info">
-          <p>Bạn chưa có tài khoản?</p>
-          <a href="/register">Đăng ký</a>
-        </div>
-      </div>
 
-      <div className="image-section">
-        <img src='/Login.png' alt='Logo' className="login-image" />
+        <div className="image-section">
+          <img src='/Login.png' alt='Logo' className="login-image" />
+        </div>
       </div>
     </div>
   );
