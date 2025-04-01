@@ -13,10 +13,10 @@
     color: #4A4A4A;
 }
 
+
 .SubMenu {
     position: absolute;
     top: 100%;
-    left: 0;
     max-height: 250px;
     overflow-y: auto;
     width: fit-content;
@@ -27,6 +27,14 @@
     margin-top: 10px;
     box-shadow: 0px 4px 10px var(--sub-beige);
     z-index: 1000;
+}
+
+.SubMenuLeft  {
+    left: 0;
+}
+
+.SubMenuRight {
+    right: 0;
 }
 
 .SubMenu::-webkit-scrollbar {
@@ -45,6 +53,10 @@
     cursor: pointer;
 }
 
+.UserSubMenuItem {
+    width: 120px;
+}
+
 .SubMenuLink {
     text-decoration: none;
     color: var(--primary-dark);
@@ -54,3 +66,22 @@
     background-color: var(--sub-beige);
     color: var(--primary-light);
 } 
+
+.UserContainer {
+    display: flex;
+    align-items: center;
+}
+
+.UserImage {
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: solid 1px black;
+}
+
+.UserName {
+    margin-left: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,173 @@
+.outer-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-container {
+    width: 100%; 
+    display: flex; /* Sử dụng flexbox để bố trí hai phần */
+    border-radius: 8px;
+    max-width: 1000px; 
+}
+
+.form-section {
+    flex: 1; /* Chiếm phần bên trái */
+    background-color: #f8e6bc; /* Màu nền cho form */
+    padding: 30px;
+    border-radius: 8px; /* Bo góc cho form */
+    max-width: 1000px; /* Chiều rộng tối đa cho form */
+    margin-right: 50px; /* Khoảng cách giữa form và hình ảnh */
+    display: flex;
+    flex-direction: column; /* Sắp xếp theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều dọc */
+}
+
+.image-section {
+    flex: 1; /* Giữ tỷ lệ 1:1 với form */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-section img {
+    height: 500px; 
+    width: 500px; 
+    object-fit: cover; 
+    
+   
+}
+
+
+.form-description {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #555;
+    margin-top: -20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left; /* Căn trái cho label và input */
+}
+
+.form-group label {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.required {
+    color: red; /* Màu đỏ cho dấu * */
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center; /* Căn giữa cho checkbox và label */
+    margin-top: 10px; /* Khoảng cách trên */
+    font-size: 12px;
+}
+
+.checkbox-group input {
+    margin-right: 5px; /* Khoảng cách bên phải cho checkbox */
+}
+
+.pass-input-container {
+    position: relative;
+}
+
+.form-group input {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.forgot-password {
+    text-align: right; /* Căn phải */
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-top: -20px;
+}
+
+.submit-button {
+    background-color: #D4AF37; /* Màu nền của nút */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; /* Chiều rộng 100% */
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+button:hover {
+    opacity: 0.9; /* Hiệu ứng hover */
+}
+
+.social-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.icon-button {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Căn giữa nội dung */
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 50%; /* Hình tròn */
+    width: 40px; /* Chiều rộng cố định */
+    height: 40px; /* Chiều cao cố định */
+    cursor: pointer;
+    margin-right: 5px; /* Khoảng cách giữa các nút */
+    color: #333;
+    transition: color 0.3s, background 0.3s; /* Hiệu ứng chuyển màu */
+}
+
+.icon-button:hover {
+    color: #D4AF37; /* Màu khi hover */
+}
+
+.register-info {
+    margin-top: -50px; /* Khoảng cách từ thông tin đăng ký */
+    text-align: right; /* Căn phải */
+    font-size: 16px;
+
+}
+
+.register-info a {
+    color: #007bff; /* Màu cho link */
+}
+
+.error-message {
+    color: red; /* Màu đỏ cho thông báo lỗi */
+    font-size: 12px; /* Kích thước chữ nhỏ */
+    display: block; /* Đảm bảo thông báo lỗi nằm trên dòng mới */
+    margin-top: 5px; /* Khoảng cách trên thông báo lỗi */
+}
+
+.back-icon {
+    top: 5px;
+    left: 10px;
+    z-index: 1000;
+    position: fixed;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.pass-icon {
+    top: 50%;
+    position: absolute;
+    z-index: 1000;
+    right: 10px;
+    cursor: pointer;
+    transform: translateY(-50%);
+    color: var(--sub-gray);
+}
+
