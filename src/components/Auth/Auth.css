@@ -144,7 +144,14 @@ button:hover {
 .register-info a {
     color: #007bff; /* Màu cho link */
 }
+.form-group-row {
+    display: flex; /* Sử dụng Flexbox để đặt các phần tử trên cùng một dòng */
+    gap: 20px; /* Khoảng cách giữa firstname và lastname */
+}
 
+.form-group-row .form-group {
+    flex: 1; /* Mỗi phần tử chiếm một nửa chiều rộng */
+}
 .error-message {
     color: red; /* Màu đỏ cho thông báo lỗi */
     font-size: 12px; /* Kích thước chữ nhỏ */
