@@ -3,6 +3,7 @@ import styles from './ProductItem.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faRegStar} from '@fortawesome/free-regular-svg-icons'
+import { FaBookmark } from "react-icons/fa";
 import { capitalizeFirstLetter } from '../../utils/util';
 
 const ProductItem = ({product}) => {
@@ -15,6 +16,10 @@ const ProductItem = ({product}) => {
   return(
     <>
       <div className={styles.ItemContainer}>
+        <div className={styles.DiscountContainer}>
+          <FaBookmark className={styles.BookmarkIcon}/>
+          <span className={styles.DiscountPercent}>-{Math.ceil(product.discountPercentage * 10) / 10}%</span>
+        </div>
         <img src={product.images[0]} className={styles.ItemImg}/>
         <p className={styles.ItemName}>{product.title}</p>
         <p className={styles.ItemTag}>
@@ -36,7 +41,7 @@ const ProductItem = ({product}) => {
             {formattedRating} ({product.reviews.length})
           </p>
         </div>
-        <p className={styles.ItemPrice}>{product.price}$</p>  
+        <p className={styles.ItemPrice}><span className={styles.OriginalPrice}>{product.price}$</span> {Math.ceil((product.price*(100-product.discountPercentage)/100) * 100) / 100}$</p>  
         <button className={styles.ItemButton}>
           <FontAwesomeIcon icon={faShoppingCart} className={styles.CartIcon}/>
           Add to cart
