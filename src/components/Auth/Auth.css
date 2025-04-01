@@ -74,6 +74,10 @@
     margin-right: 5px; /* Khoảng cách bên phải cho checkbox */
 }
 
+.pass-input-container {
+    position: relative;
+}
+
 .form-group input {
     width: 100%;
     padding-top: 10px;
@@ -140,7 +144,19 @@ button:hover {
 .register-info a {
     color: #007bff; /* Màu cho link */
 }
+/* Thêm CSS cho firstname và lastname trên cùng một dòng */
+.form-group-row {
+    display: flex; 
+    justify-content: space-between; /* Tạo khoảng cách đều giữa các phần tử */
+    gap: 20px; 
 
+.form-group-row .form-group {
+    flex: 1; 
+}
+
+.form-group-row .form-group input {
+    width: 100%; 
+}
 .error-message {
     color: red; /* Màu đỏ cho thông báo lỗi */
     font-size: 12px; /* Kích thước chữ nhỏ */
@@ -151,8 +167,20 @@ button:hover {
 .back-icon {
     top: 5px;
     left: 10px;
-    z-index: 1000%;
+    z-index: 1000;
     position: fixed;
     font-size: 30px;
     cursor: pointer;
+}
+
+.pass-icon {
+    top: 50%;
+    position: absolute;
+    z-index: 1000;
+    right: 10px;
+    cursor: pointer;
+    transform: translateY(-50%);
+    color: var(--sub-gray);
+}
+
 }
