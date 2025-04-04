@@ -20,6 +20,10 @@ export const storeToken = (token) => {
   setAuthHeader(token);
 };
 
+export const getCart = () => {
+  return localStorage.getItem('cartProducts');
+};
+
 export const getToken = () => {
   return localStorage.getItem('authToken');
 };

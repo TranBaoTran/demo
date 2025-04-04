@@ -5,7 +5,7 @@ import { faCartShopping, faMagnifyingGlass, faPhone } from '@fortawesome/free-so
 import CategoryDropDown from '../DropDown/CategoryDropDown';
 import { Link, useNavigate } from "react-router-dom";
 import UserDropDown from '../DropDown/UserDropDown';
-import { getToken } from '../../api/axiosClient';
+import { getCart, getToken } from '../../api/axiosClient';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -31,8 +31,13 @@ const Header = () => {
     </div>
 
     <div className={styles.HeaderRight}>
-      <FontAwesomeIcon icon={faCartShopping} className={styles.IconMenu} alt='Cart'/>
+    <div className={styles.CartContainer}>
+      <FontAwesomeIcon icon={faCartShopping} className={styles.IconMenu} alt="Cart" />
+      {getCart() ? (<span className={styles.dot}>{getCart().length()}</span>):(<span></span>)}
+    </div>
+    <div className={styles.CartContainer}>
       <FontAwesomeIcon icon={faPhone} className={styles.IconMenu} />
+    </div> 
       {token ? (
         <UserDropDown />
       ) : (
