@@ -113,15 +113,8 @@ const Register = () => {
             </div>
             <button type="submit" className="submit-button">Signup</button>
           </form>
-          <div className="social-buttons">
-            <button className="icon-button" style={{ color: '#000' }}><FaFacebookF style={{ color: '#3b5998' }} /></button>
-            <button className="icon-button" style={{ color: '#000' }}><FaInstagram style={{ color: '#C13584' }} /></button>
-            <button className="icon-button" style={{ color: '#000' }}><FaGoogle style={{ color: '#DB4437' }} /></button>
-            <button className="icon-button" style={{ color: '#000' }}><AiOutlineClose style={{ color: '#000' }} /></button>
-          </div>
           <div className="register-info">
-            <p>Already have an account?</p>
-            <a href="/login">Login</a>
+            <p>Already have an account? <a href="/login">Login</a> </p>
           </div>
         </div>
 

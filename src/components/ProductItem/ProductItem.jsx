@@ -7,7 +7,7 @@ import { FaBookmark } from "react-icons/fa";
 import { capitalizeFirstLetter } from '../../utils/util';
 
 const ProductItem = ({product}) => {
-  const averageRating = product.reviews.length ? product.reviews.reduce((sum, review) => sum + review.rating, 0) / product.reviews.length : 0;
+  const averageRating = product.rating;
   const formattedRating = averageRating.toFixed(1);
   const fullStars = Math.floor(averageRating);
   const hasHalfStar = averageRating % 1 >= 0.5; 

@@ -73,15 +73,8 @@ const Login = () => {
             </div>
             <button type="submit" className="submit-button">Login</button>
           </form>
-          <div className="social-buttons">
-            <button className="icon-button" style={{ color: '#000' }}><FaFacebookF style={{ color: '#3b5998' }} /></button>
-            <button className="icon-button" style={{ color: '#000' }}><FaInstagram style={{ color: '#C13584' }} /></button>
-            <button className="icon-button" style={{ color: '#000' }}><FaGoogle style={{ color: '#DB4437' }} /></button>
-            <button className="icon-button" style={{ color: '#000' }}><AiOutlineClose style={{ color: '#000' }} /></button>
-          </div>
           <div className="register-info">
-            <p>Don't have an account?</p>
-            <a href="/register">Sign up</a>
+            <p>Don't have an account?  <a href="/register">Sign up</a></p>       
           </div>
         </div>
 

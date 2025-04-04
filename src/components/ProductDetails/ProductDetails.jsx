@@ -29,6 +29,14 @@ export default function ProductDetail() {
     fetchProduct();
   }, [id]);
 
+  if (!product) {
+    return (
+      <div className='load-container'>
+        <div className='loader'></div>
+      </div>
+    );
+  }
+
   return (
     <div className="pd-container">
       <div className="pd-flex-wrapper">
