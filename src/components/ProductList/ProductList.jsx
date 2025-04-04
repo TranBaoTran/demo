@@ -19,8 +19,7 @@ const ProductList = () => {
 
   // Hàm xử lý khi click vào sản phẩm
   const handleProductClick = (product) => {
-    // Chuyển hướng đến trang chi tiết sản phẩm và truyền product qua state
-    navigate('/product/detail', { state: { product } });
+    navigate('/product/detail/' + product.id);
   };
 
   useEffect(() => {

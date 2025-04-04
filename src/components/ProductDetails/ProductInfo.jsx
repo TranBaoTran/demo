@@ -53,8 +53,8 @@ export default function ProductInfo({ product }) {
         </span>
       </div>
       <div className="pd-price-group">
-        <span className="pd-price">${product.price.toFixed(2)}</span>
-        <span className="pd-old-price">${(product.price / (1 - product.discountPercentage / 100)).toFixed(2)}</span>
+        <span className="pd-price"> {Math.ceil((product.price*(100-product.discountPercentage)/100) * 100) / 100}$</span>
+        <span className="pd-old-price">${product.price.toFixed(2)}</span>
         <span className="pd-discount">-{product.discountPercentage}%</span>
       </div>
       <div className="pd-details-group">
