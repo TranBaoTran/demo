@@ -3,6 +3,7 @@ import ProductList from "./components/ProductList/ProductList"
 import ProductDetails from "./components/ProductDetails/ProductDetails"
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+import AuthGuard from "./utils/AuthGuard";
 import './App.css'
 import {
   createBrowserRouter,

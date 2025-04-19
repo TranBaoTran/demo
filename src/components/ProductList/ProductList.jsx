@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSearchParams } from "react-router-dom";
 import styles from './ProductList.module.css';
@@ -14,13 +14,11 @@ const ProductList = () => {
   const [totalProduct,setTotalProduct] = useState(0);
   const productPerPage = 12;
   const pageDisplay = 6;
-  const [totalPage,setTotalPage] = useState(1);
   const navigate = useNavigate();
 
-  // Hàm xử lý khi click vào sản phẩm
-  const handleProductClick = (product) => {
+  const handleProductClick = useCallback((product) => {
     navigate('/product/detail/' + product.id);
-  };
+  }, [navigate]);  
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -36,9 +34,9 @@ const ProductList = () => {
     fetchProducts();
   }, [currentPage, category]);
 
-  useEffect(() => {
-    setTotalPage(Math.ceil(totalProduct / productPerPage));
-  }, [totalProduct])
+  const totalPage = useMemo(() => {
+    return Math.ceil(totalProduct / productPerPage);
+  }, [totalProduct, productPerPage]);
 
   return(
     <>
