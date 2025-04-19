@@ -1,0 +1,121 @@
+.summary {
+    width: 25%;
+    position: fixed;
+    right: 5%;
+    top: 27%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.accountStatus {
+    background-color: #f8f8f8;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+
+.transactionCode {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.couponSection {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.couponInput {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+}
+
+.applyButton {
+    padding: 8px 15px;
+    background-color: var(--sub-gold);
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.sectionTitle {
+    font-weight: bold;
+    margin: 15px 0 10px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.priceRow {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.totalAmount {
+    font-weight: bold;
+    font-size: 16px;
+    color: #ff4757;
+    margin: 16px 0;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+.saleTimer {
+    background-color: #fff4f6;
+    color: #ff4757;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.checkoutButton {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #ff6b81, #ff4757);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+.checkoutButton:hover {
+    background: linear-gradient(to right, #ff4757, #ff6b81);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 107, 129, 0.3);
+}
+
+.checkoutButton:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}

@@ -21,7 +21,8 @@ export const storeToken = (token) => {
 };
 
 export const getCart = () => {
-  return localStorage.getItem('cartProducts');
+  var cartData = localStorage.getItem('cartProducts');
+  return cartData ? JSON.parse(cartData) : [];
 };
 
 export const getToken = () => {

@@ -15,6 +15,14 @@ const Header = () => {
     navigate(direction, {replace: isReplace});
   };
 
+  const handleCartClick = (e) => {
+    if (!token) {
+      e.preventDefault();
+      alert('Sign in to access Cart');
+      // navigate('/login', { replace: true });
+    }
+  };
+
   return (
     <>
     <nav className={styles.Header}>
@@ -32,8 +40,14 @@ const Header = () => {
 
     <div className={styles.HeaderRight}>
     <div className={styles.CartContainer}>
+      <Link 
+        to="/cart" 
+        className={styles.CartLink}
+        onClick={handleCartClick}
+      >
       <FontAwesomeIcon icon={faCartShopping} className={styles.IconMenu} alt="Cart" />
-      {getCart() ? (<span className={styles.dot}>{getCart().length()}</span>):(<span></span>)}
+      {getCart() ? (<span className={styles.dot}>{getCart().length}</span>):(<span></span>)}
+      </Link>
     </div>
     <div className={styles.CartContainer}>
       <FontAwesomeIcon icon={faPhone} className={styles.IconMenu} />

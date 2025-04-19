@@ -109,4 +109,9 @@
     line-height: 1;
     transform: scale(0.9);
 }
+
+.CartLink {
+    text-decoration: none;
+    color: inherit;
+}
   

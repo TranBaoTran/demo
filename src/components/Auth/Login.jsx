@@ -7,17 +7,31 @@ import { Link, useNavigate } from 'react-router-dom';
 import authApi from '../../api/authApi';
 import { storeToken } from '../../api/axiosClient';
 import PasswordInput from './PasswordInput';
+import cartApi from "../../api/cartApi";
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState({ username: '', password: '' });
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (username, password) => {
+    setIsLoading(true);
     try {
       const userData = await authApi.login(username, password);
       storeToken(userData.data.accessToken);
+
+      try {
+        const cartResponse = await cartApi.getCartById();
+        const cartItems = cartResponse.data.products || [];
+        
+        localStorage.setItem('cartProducts', JSON.stringify(cartItems));
+      } catch (cartError) {
+          console.error('Error fetching cart:', cartError);
+          localStorage.setItem('cartProducts', JSON.stringify([]));
+      }
+
       navigate('/');
     } catch (error) {
       alert('Wrong username or password.');
@@ -71,7 +85,7 @@ const Login = () => {
                 setPassword = {setPassword}
               />
             </div>
-            <button type="submit" className="submit-button">Login</button>
+            <button type="submit" className="submit-button" disabled={isLoading}>Login</button>
           </form>
           <div className="register-info">
             <p>Don't have an account?  <a href="/register">Sign up</a></p>       

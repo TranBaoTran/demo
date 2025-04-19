@@ -1,0 +1,154 @@
+.product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 3%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: auto;
+  min-height: 128px;
+  position: relative;
+  overflow: hidden;
+}
+
+.product:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+}
+
+.saleRibbon {
+  position: absolute;
+  top: 10px;
+  right: -25px;
+  background-color: var(--sub-gold);
+  color: white;
+  padding: 2px 30px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+@keyframes blink {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+.sale-ribbon {
+  animation: blink 1.5s infinite;
+}
+
+.image {
+  height: 64px;
+  margin-right: 15px;
+}
+
+.selected {
+  border: 2px solid var(--sub-gold);
+  background-color: #fffbec;
+}
+
+.checkmark {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  font-size: 20px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 15px;
+}
+
+.details h3 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+}
+
+.details p {
+  margin: 2px 0;
+  font-size: 14px;
+}
+
+.price {
+  font-weight: bold;
+  color: red;
+  margin-right: 8px;
+}
+
+.discountPercentage {
+  font-weight: bold;
+  color: rgb(18, 152, 204);
+  margin-left: 8px;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 20px;
+}
+
+.quantityControls button {
+  border: none;
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 0.5px solid #515151;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.quantityControls button:hover {
+  background: #0056b3;
+}
+
+.removeIcon {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: opacity 0.3s;
+}
+
+.removeIcon:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .product {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+  
+  .details {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .actions {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
