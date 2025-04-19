@@ -1,10 +1,11 @@
-import React from 'react';
+import { React, memo } from 'react';
 import styles from './ProductItem.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faRegStar} from '@fortawesome/free-regular-svg-icons'
 import { FaBookmark } from "react-icons/fa";
 import { capitalizeFirstLetter } from '../../utils/util';
+import ProductImage from '../ProductItem/ProductImage';
 
 const ProductItem = ({product, onAddToCart}) => {
   const averageRating = product.rating;
@@ -24,7 +25,7 @@ const ProductItem = ({product, onAddToCart}) => {
           <FaBookmark className={styles.BookmarkIcon}/>
           <span className={styles.DiscountPercent}>-{Math.ceil(product.discountPercentage * 10) / 10}%</span>
         </div>
-        <img src={product.images[0]} className={styles.ItemImg}/>
+        <ProductImage src={product.images[0]}/>
         <p className={styles.ItemName}>{product.title}</p>
         <p className={styles.ItemTag}>
           {
@@ -55,4 +56,4 @@ const ProductItem = ({product, onAddToCart}) => {
   )
 };
 
-export default ProductItem;
+export default memo(ProductItem);

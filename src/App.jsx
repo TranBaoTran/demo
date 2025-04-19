@@ -4,6 +4,7 @@ import ProductDetails from "./components/ProductDetails/ProductDetails"
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import CartPage from "./components/CartPage/CartPage";
+import AuthGuard from "./utils/AuthGuard";
 import './App.css'
 import {
   createBrowserRouter,
