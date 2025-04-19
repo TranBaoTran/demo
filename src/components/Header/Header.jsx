@@ -1,27 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faMagnifyingGlass, faPhone } from '@fortawesome/free-solid-svg-icons';
 import CategoryDropDown from '../DropDown/CategoryDropDown';
 import { Link, useNavigate } from "react-router-dom";
 import UserDropDown from '../DropDown/UserDropDown';
-import { getCart, getToken } from '../../api/axiosClient';
+import { getCart, getToken, getCartItems } from '../../api/axiosClient';
 
 const Header = () => {
   const navigate = useNavigate();
   const token = getToken();
+  const [cartCount, setCartCount] = useState(getCartItems());
 
   const handleClick = (direction, isReplace) => {
     navigate(direction, {replace: isReplace});
   };
 
-  const handleCartClick = (e) => {
-    if (!token) {
-      e.preventDefault();
-      alert('Sign in to access Cart');
-      // navigate('/login', { replace: true });
-    }
-  };
+  useEffect(() => {
+    const updateCartCount = () => {
+      setCartCount(getCartItems());
+    };
+
+    window.addEventListener('cartUpdated', updateCartCount);
+    updateCartCount();
+    return () => {
+      window.removeEventListener('cartUpdated', updateCartCount);
+    };
+  }, [])
 
   return (
     <>
@@ -43,10 +48,9 @@ const Header = () => {
       <Link 
         to="/cart" 
         className={styles.CartLink}
-        onClick={handleCartClick}
       >
       <FontAwesomeIcon icon={faCartShopping} className={styles.IconMenu} alt="Cart" />
-      {getCart() ? (<span className={styles.dot}>{getCart().length}</span>):(<span></span>)}
+      {getCart() ? (<span className={styles.dot}>{cartCount}</span>):(<span></span>)}
       </Link>
     </div>
     <div className={styles.CartContainer}>

@@ -106,13 +106,14 @@ const Cart = ({ onSelect, selectedItems, products, onUpdateCart }) => {
             product.id === id ? { ...product, quantity: Math.max(1, product.quantity + change) } : product
         );
         onUpdateCart(updatedProducts);
+        window.dispatchEvent(new Event('cartUpdated'));
     };
 
     const handleRemove = (id) => {
         const updatedProducts = products.filter((product) => product.id !== id);
         onUpdateCart(updatedProducts);
-        
         localStorage.setItem("cartProducts", JSON.stringify(updatedProducts));
+        window.dispatchEvent(new Event('cartUpdated'));
     };
 
     const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);

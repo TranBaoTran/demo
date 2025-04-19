@@ -5,6 +5,7 @@ import styles from './ProductList.module.css';
 import ProductItem from '../ProductItem/ProductItem';
 import productApi from '../../api/productApi';
 import ProductPagination from '../ProductPagination/ProductPagination';
+import { getToken } from '../../api/axiosClient';
 
 const ProductList = () => {
   const [searchParams] = useSearchParams();
@@ -16,12 +17,15 @@ const ProductList = () => {
   const pageDisplay = 6;
   const navigate = useNavigate();
 
-  // Hàm xử lý khi click vào sản phẩm
-  // const handleProductClick = (product) => {
-  //   navigate('/product/detail/' + product.id);
-  // };
+  const handleProductClick = useCallback((productID) => {
+    navigate('/product/detail/' + productID);
+  }, [navigate]);  
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = useCallback((product) => {
+    if (!getToken()){
+      alert("Please login to add to cart.");
+      return;
+    }
     const cart = JSON.parse(localStorage.getItem('cartProducts')) || [];
     const existingProductIndex = cart.findIndex(item => item.id === product.id);
   
@@ -31,8 +35,9 @@ const ProductList = () => {
       cart.push({ ...product, quantity: 1 });
     }
     localStorage.setItem('cartProducts', JSON.stringify(cart));
+    window.dispatchEvent(new Event('cartUpdated'));
     alert(`${product.title} đã được thêm vào giỏ hàng.`);
-  };
+  });
   
   useEffect(() => {
     const fetchProducts = async () => {
@@ -57,7 +62,7 @@ const ProductList = () => {
       <div className={styles.ProductListContainer}>
         {products.map(product => 
           <div key={product.id}>
-            <ProductItem product={product} onAddToCart={handleAddToCart}/>
+            <ProductItem product={product} onAddToCart={() => handleAddToCart(product)} onProductDetail={() => handleProductClick(product.id)}/>
           </div>
         )}
       </div>   

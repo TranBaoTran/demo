@@ -25,6 +25,12 @@ export const getCart = () => {
   return cartData ? JSON.parse(cartData) : [];
 };
 
+export let getCartItems = () => {
+  const cartData = JSON.parse(localStorage.getItem('cartProducts'));
+  const totalQuantity = cartData.reduce((sum, item) => sum + item.quantity, 0);
+  return totalQuantity;
+}
+
 export const getToken = () => {
   return localStorage.getItem('authToken');
 };
