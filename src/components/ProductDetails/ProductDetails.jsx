@@ -1,10 +1,11 @@
 // pages/ProductDetail.jsx
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import ProductImage from './ProductImage';
 import ProductInfo from './ProductInfo';
 import ProductReviews from './ProductReviews';
 import productApi from '../../api/productApi';
+import { getToken } from '../../api/axiosClient';
 import './ProductDetails.css';
 
 export default function ProductDetail() {
@@ -36,7 +37,7 @@ export default function ProductDetail() {
       </div>
     );
   }
-
+  
   return (
     <div className="pd-container">
       <div className="pd-flex-wrapper">
@@ -44,7 +45,7 @@ export default function ProductDetail() {
           <ProductImage thumbnail={product.thumbnail} images={product.images} />
         </div>
         <div className="pd-info-column">
-          <ProductInfo product={product} />
+          <ProductInfo product={product}/>
         </div>
       </div>
       <ProductReviews reviews={product.reviews} />

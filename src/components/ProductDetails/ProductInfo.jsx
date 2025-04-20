@@ -1,7 +1,9 @@
 // components/ProductInfo.jsx
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FaStar, FaCartPlus, FaTruck, FaShieldAlt, FaFileAlt } from 'react-icons/fa';
 import './ProductDetails.css';
+import { getToken } from '../../api/axiosClient';
+import { useNavigate } from 'react-router-dom';
 
 function renderStars(rating) {
     const stars = [];
@@ -25,6 +27,7 @@ function renderStars(rating) {
 
 export default function ProductInfo({ product }) {
   const [quantity, setQuantity] = useState(1); // Quản lý số lượng trong state
+  const navigate = useNavigate();
 
   // Hàm xử lý tăng số lượng
   const increaseQuantity = () => {
@@ -38,6 +41,60 @@ export default function ProductInfo({ product }) {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
+  };
+
+  const handleAddToCart = () => {
+    if (!getToken()) {
+      alert("Please login to add product to cart.");
+      return;
+    }
+
+    const cart = JSON.parse(localStorage.getItem('cartProducts')) || [];
+    const existingProductIndex = cart.findIndex(item => item.id === product.id);
+    const cloneProduct = structuredClone(product);
+    
+    if (existingProductIndex !== -1) {
+      cart[existingProductIndex].quantity += quantity;
+      const [existingProduct] = cart.splice(existingProductIndex, 1);
+      cart.unshift(existingProduct);
+    } else {
+      cart.unshift({ ...cloneProduct, quantity });
+    }
+
+    localStorage.setItem('cartProducts', JSON.stringify(cart));
+    window.dispatchEvent(new Event('cartUpdated'));
+    
+    alert(`${product.title} was added into cart.`);
+  };
+
+  const handleBuyNow = () => {
+    if (!getToken()) {
+      alert("Please login to proceed with your purchase.");
+      return;
+    }
+
+    const cart = JSON.parse(localStorage.getItem('cartProducts')) || [];
+    const existingProductIndex = cart.findIndex(item => item.id === product.id);
+    const cloneProduct = structuredClone(product);
+    
+    if (existingProductIndex !== -1) {
+      cart[existingProductIndex].quantity += quantity;
+      const [existingProduct] = cart.splice(existingProductIndex, 1);
+      cart.unshift(existingProduct);
+    } else {
+      cart.unshift({ ...cloneProduct, quantity });
+    }
+
+    localStorage.setItem('cartProducts', JSON.stringify(cart));
+    window.dispatchEvent(new Event('cartUpdated'));
+    
+    navigate('/cart', { 
+      state: { 
+        selectedProductId: product.id,
+        justAdded: true,
+        pageNumber: 1
+      } 
+    });
   };
 
   return (
@@ -93,8 +150,8 @@ export default function ProductInfo({ product }) {
         </div>
 
         <div className="pd-buttons">
-          <button className="pd-btn-outline"><FaCartPlus/> Add To Cart</button>
-          <button className="pd-btn-primary">Buy Now</button>
+          <button className="pd-btn-outline" onClick={handleAddToCart}><FaCartPlus/> Add To Cart</button>
+          <button className="pd-btn-primary" onClick={handleBuyNow}>Buy Now</button>
         </div>
       </div>
     </div>

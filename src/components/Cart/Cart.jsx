@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Cart.module.css"; 
 import CartProductItem from "../CartProductItem/CartProductItem";
+import { useLocation } from "react-router-dom";
+
 
 const ITEMS_PER_PAGE = 4;
 
 const Cart = ({ onSelect, selectedItems, products, onUpdateCart }) => {
     const [currentPage, setCurrentPage] = useState(1);
+    const location = useLocation();
 
     useEffect(() => {
         // const cartId = localStorage.getItem("cartId") || 1;
@@ -21,7 +24,15 @@ const Cart = ({ onSelect, selectedItems, products, onUpdateCart }) => {
         //   const savedProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
         //   onUpdateCart(savedProducts);
         // });
-    }, []);
+
+        if (location.state?.justAdded) {
+            setCurrentPage(1);
+            if (location.state.selectedProductId) {
+                onSelect(location.state.selectedProductId);
+            }
+            window.history.replaceState({}, document.title);
+        }
+    }, [location.state]);
 
     const renderPageNumbers = () => {
         const pages = [];
@@ -114,6 +125,11 @@ const Cart = ({ onSelect, selectedItems, products, onUpdateCart }) => {
         onUpdateCart(updatedProducts);
         localStorage.setItem("cartProducts", JSON.stringify(updatedProducts));
         window.dispatchEvent(new Event('cartUpdated'));
+
+        const newTotalPages = Math.ceil(updatedProducts.length / ITEMS_PER_PAGE);
+        if (currentPage > newTotalPages && newTotalPages > 0) {
+            setCurrentPage(newTotalPages);
+        }
     };
 
     const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
