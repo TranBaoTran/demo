@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './DropDown.module.css';
-import { clearToken, getToken } from '../../api/axiosClient';
+import { clearCart, clearToken, getToken } from '../../api/axiosClient';
 import authApi from '../../api/authApi';
 
 const UserDropDown = () => {
@@ -10,6 +10,7 @@ const UserDropDown = () => {
   const handleClick = () => {
     if(getToken()){
         clearToken();
+        clearCart();
         window.location.reload();
     }
   }

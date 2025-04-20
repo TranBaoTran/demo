@@ -26,7 +26,8 @@ export const getCart = () => {
 };
 
 export let getCartItems = () => {
-  const cartData = JSON.parse(localStorage.getItem('cartProducts'));
+  const storedCartData = localStorage.getItem('cartProducts');
+  const cartData = storedCartData ? JSON.parse(storedCartData) : [];
   const totalQuantity = cartData.reduce((sum, item) => sum + item.quantity, 0);
   return totalQuantity;
 }
@@ -38,6 +39,10 @@ export const getToken = () => {
 export const clearToken = () => {
   localStorage.removeItem('authToken');
   setAuthHeader(null);
+};
+
+export const clearCart = () => {
+  localStorage.removeItem('cartProducts');
 };
 
 axiosClient.interceptors.request.use(

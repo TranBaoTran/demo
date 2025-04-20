@@ -50,7 +50,7 @@ const Header = () => {
         className={styles.CartLink}
       >
       <FontAwesomeIcon icon={faCartShopping} className={styles.IconMenu} alt="Cart" />
-      {getCart() ? (<span className={styles.dot}>{cartCount}</span>):(<span></span>)}
+      {getCart().length!=0 ? (<span className={styles.dot}>{cartCount}</span>):(<span></span>)}
       </Link>
     </div>
     <div className={styles.CartContainer}>
