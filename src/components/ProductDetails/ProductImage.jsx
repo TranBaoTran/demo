@@ -1,14 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './ProductDetails.css';
 
 export default function ProductImage({ thumbnail, images }) {
   // State để lưu trữ ảnh được chọn
   const [selectedImage, setSelectedImage] = useState(thumbnail);
   
-  // Hàm để thay đổi ảnh thumbnail khi người dùng chọn ảnh từ gallery
   const handleImageClick = (img) => {
     setSelectedImage(img);
   };
+
+  useEffect(() => {
+    setSelectedImage(thumbnail)
+  }, [thumbnail])
 
   return (
     <div className="pd-image-container">

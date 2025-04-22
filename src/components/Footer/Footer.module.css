@@ -1,1 +1,33 @@
-.Footer {}
+.Footer {
+    background-color: var(--sub-gold);
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    border-bottom: 2px solid var(--primary-light);
+}
+
+.ItemContainer {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+}
+
+.DetailContainer{
+    height: fit-content;
+    width: 30%;
+    gap: 20px;
+    color: var(--primary-light);    
+}
+
+.Address {
+    background-color: var(--sub-gold);
+    display: flex;
+    justify-content: center;
+    color: var(--primary-light);
+    padding: 10px;
+}
+

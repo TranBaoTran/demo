@@ -6,8 +6,9 @@ import CategoryDropDown from '../DropDown/CategoryDropDown';
 import { Link, useNavigate } from "react-router-dom";
 import UserDropDown from '../DropDown/UserDropDown';
 import { getCart, getToken, getCartItems } from '../../api/axiosClient';
+import SearchDropDown from '../DropDown/SearchDropDown';
 
-const Header = () => {
+const Header = ({onGoToFooterClick}) => {
   const navigate = useNavigate();
   const token = getToken();
   const [cartCount, setCartCount] = useState(getCartItems());
@@ -37,10 +38,11 @@ const Header = () => {
       <img src='/Logo.png' alt='Logo' className={styles.Logo}></img>
       </Link>
         <CategoryDropDown />
-        <div className={styles.SearchBarContainer}>
+        {/* <div className={styles.SearchBarContainer}>
           <input type='text' className={styles.SearchBarInput} placeholder='Search'></input>
-          <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.IconMenu}/>
-      </div>
+          <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.IconMenu} style={{cursor: 'auto'}}/>
+      </div> */}
+      <SearchDropDown />
     </div>
 
     <div className={styles.HeaderRight}>
@@ -53,7 +55,7 @@ const Header = () => {
       {getCart().length!=0 ? (<span className={styles.dot}>{cartCount}</span>):(<span></span>)}
       </Link>
     </div>
-    <div className={styles.CartContainer}>
+    <div className={styles.CartContainer} onClick={onGoToFooterClick}>
       <FontAwesomeIcon icon={faPhone} className={styles.IconMenu} />
     </div> 
       {token ? (

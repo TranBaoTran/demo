@@ -21,7 +21,7 @@ const ProductItem = ({product, onAddToCart, onProductDetail}) => {
           <FaBookmark className={styles.BookmarkIcon}/>
           <span className={styles.DiscountPercent}>-{Math.ceil(product.discountPercentage * 10) / 10}%</span>
         </div>
-        <ProductImage src={product.images[0]} onClick={onProductDetail}/>
+        <ProductImage src={product.thumbnail} onClick={onProductDetail}/>
         <p className={styles.ItemName} onClick={onProductDetail}>{product.title}</p>
         <p className={styles.ItemTag}>
           {

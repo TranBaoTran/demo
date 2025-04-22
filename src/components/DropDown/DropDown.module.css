@@ -13,6 +13,26 @@
     color: #4A4A4A;
 }
 
+.SearchBarContainer {
+    display: flex;
+    align-items: center;
+    background: #f6f6f6;
+    border-radius: 4px;
+    width: 513px;
+    padding: 16px;
+    height: fit-content;
+}
+
+.SearchBarInput {
+    border: none;
+    outline: none;
+    background: transparent;
+    flex: 1;
+    font-size: 18px;
+    font-weight: 500;
+    height:fit-content;
+    width: max-content;
+}
 
 .SubMenu {
     position: absolute;
@@ -51,6 +71,23 @@
     padding-bottom: 8px;
     background-color: var(--primary-light);
     cursor: pointer;
+}
+
+.SearchImage {
+    height: 94px;
+    width: 94px;
+    object-fit: contain;
+}
+
+.SubMenuSearch {
+    width: 525px;
+    height: fit-content;
+    align-items: center;
+    background-color: var(--primary-light);
+    padding: 10px;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
 }
 
 .UserSubMenuItem {

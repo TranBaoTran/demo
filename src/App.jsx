@@ -3,7 +3,8 @@ import ProductList from "./components/ProductList/ProductList"
 import ProductDetails from "./components/ProductDetails/ProductDetails"
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
-import CartPage from "./components/CartPage/CartPage";
+import React, {Suspense} from "react";
+const CartPage = React.lazy(() => import ("./components/CartPage/CartPage"))
 import './App.css'
 import {
   createBrowserRouter,
@@ -33,9 +34,11 @@ const router = createBrowserRouter(
         {
           path: "cart",
           element: (
-          <AuthGuard>
-            <CartPage />
-          </AuthGuard>   
+          <Suspense fallback={<div>Loading cart...</div>}>
+            <AuthGuard>
+              <CartPage />
+            </AuthGuard>   
+          </Suspense>
         ),
         },
       ],

@@ -30,26 +30,23 @@ const ProductList = () => {
     const cart = JSON.parse(localStorage.getItem('cartProducts')) || [];
     const existingProductIndex = cart.findIndex(item => item.id === product.id);
     
-    // Tạo bản sao mới của sản phẩm để tránh tham chiếu
     const productToAdd = { 
       ...product, 
       quantity: 1,
-      addedAt: new Date().toISOString() // Thêm timestamp để sắp xếp
+      addedAt: new Date().toISOString() 
     };
 
     let newCart;
     if (existingProductIndex !== -1) {
-      // Nếu sản phẩm đã tồn tại: tăng số lượng và đưa lên đầu
       newCart = [
         { 
           ...cart[existingProductIndex], 
           quantity: cart[existingProductIndex].quantity + 1,
-          addedAt: new Date().toISOString() // Cập nhật timestamp
+          addedAt: new Date().toISOString()
         },
         ...cart.filter(item => item.id !== product.id)
       ];
     } else {
-      // Nếu là sản phẩm mới: thêm vào đầu mảng
       newCart = [productToAdd, ...cart];
     }
 
