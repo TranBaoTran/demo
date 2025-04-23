@@ -44,14 +44,16 @@ const CartPage = () => {
     // };
 
     return (
-        <div className={styles.container}>
-            <Cart 
-                onSelect={handleSelect} 
-                selectedItems={selectedItems} 
-                products={products} 
-                onUpdateCart={handleUpdateCart} 
-            />
-            <CartSummary products={products} selectedItems={selectedItems} />
+        <div className={styles.pageContainer}>
+            <div className={styles.contentWrapper}>
+                <Cart 
+                    onSelect={handleSelect} 
+                    selectedItems={selectedItems} 
+                    products={products} 
+                    onUpdateCart={handleUpdateCart} 
+                />
+                <CartSummary products={products} selectedItems={selectedItems} />
+            </div>
         </div>
     );
 };

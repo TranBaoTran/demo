@@ -21,7 +21,7 @@ const CartSummary = ({ products, selectedItems }) => {
       .toFixed(2);
   };
 
-  const additionalServiceFee = 10.00; // Phí dịch vụ bổ sung
+  const additionalServiceFee = 10.00;
 
   return (
     <div className={styles.summary}>
