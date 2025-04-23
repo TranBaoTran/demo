@@ -1,13 +1,15 @@
-import React, {useEffect, useState } from "react";
+import React, {useEffect, useState, useRef } from "react";
 import Cart from "../Cart/Cart";
 import CartSummary from "../CartSummary/CartSummary";
-import styles from "../Cart/Cart.module.css";
+import styles from "../CartPage/CartPage.module.css";
 import { useLocation } from "react-router-dom";
 
 const CartPage = () => {
     const [selectedItems, setSelectedItems] = useState([]);
     const [products, setProducts] = useState([]);
     const location = useLocation();
+    const [stickyOffset, setStickyOffset] = useState(0);
+    const summaryRef = useRef(null);
 
     const handleSelect = (id) => {
         setSelectedItems((prev) =>
@@ -43,15 +45,44 @@ const CartPage = () => {
     //     navigate("/checkout", { state: { selectedItems } });
     // };
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const footer = document.querySelector('footer');
+            if (!footer || !summaryRef.current) return;
+            
+            const footerTop = footer.getBoundingClientRect().top;
+            const summaryHeight = summaryRef.current.offsetHeight;
+            
+            if (footerTop < window.innerHeight) {
+                setStickyOffset(footerTop - summaryHeight - 20);
+            } else {
+                setStickyOffset(0);
+            }
+        };
+    
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
-        <div className={styles.container}>
-            <Cart 
-                onSelect={handleSelect} 
-                selectedItems={selectedItems} 
-                products={products} 
-                onUpdateCart={handleUpdateCart} 
-            />
-            <CartSummary products={products} selectedItems={selectedItems} />
+        <div className={styles.pageContainer}>
+            <div className={styles.contentWrapper}>
+                <div className={styles.cartItemsContainer}>
+                    <Cart 
+                        onSelect={handleSelect} 
+                        selectedItems={selectedItems} 
+                        products={products} 
+                        onUpdateCart={handleUpdateCart} 
+                    />
+                </div>
+                
+                <div className={styles.summaryContainer}>
+                    <CartSummary 
+                        products={products} 
+                        selectedItems={selectedItems} 
+                    />
+                </div>
+            </div>
         </div>
     );
 };

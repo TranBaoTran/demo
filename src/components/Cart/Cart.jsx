@@ -11,19 +11,8 @@ const Cart = ({ onSelect, selectedItems, products, onUpdateCart }) => {
     const location = useLocation();
 
     useEffect(() => {
-        // const cartId = localStorage.getItem("cartId") || 1;
-        // cartApi.getCartById(cartId).then((response) => {
-        //     onUpdateCart(response.data.products);
-        // });
         const savedProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
         onUpdateCart(savedProducts);
-        // cartApi.getCartById(cartId).then((response) => {
-        //   const products = response.data.products;
-        //   localStorage.setItem("cartProducts", JSON.stringify(products));
-      
-        //   const savedProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
-        //   onUpdateCart(savedProducts);
-        // });
 
         if (location.state?.justAdded) {
             setCurrentPage(1);

@@ -1,8 +1,10 @@
 .cart {
-  width: 55%;
-  padding-left: 5%;
-  padding-top: 5%;
+  width: 100%;
+  box-sizing: border-box;
+  height: auto;
+  padding-top: 1.5%;
   padding-bottom: 5%;
+  flex-grow: 1;
 }
 
 .pagination {
