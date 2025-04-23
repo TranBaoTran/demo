@@ -1,8 +1,28 @@
 .pageContainer {
-    position: relative;
-    min-height: 100vh;
+    max-width: 90vw;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .contentWrapper {
-    padding-bottom: 150px;
+    display: flex;
+    gap: 5%;
+    position: relative;
+}
+
+.summaryContainer {
+    position: sticky;
+    top: 100px;
+    width: 33%;
+    flex-shrink: 0;
+    align-self: flex-start;
+    transition: top 0.3s ease;
+    box-sizing: border-box;
+    padding-right: 3%;
+}
+
+.cartItemsContainer {
+    flex-grow: 1;
+    min-width: 0;
 }
