@@ -1,0 +1,61 @@
+.AdminHeader {
+    position: sticky;
+    width: 220px;
+    background-color: #2F2E2E;
+    justify-content: space-between;
+    height: 100vh;
+    color: #C0C0C0;
+    display: flex;
+    flex-direction: column;
+}
+
+.MenuContainer {
+    height: fit-content;
+    padding: 20px;
+    justify-content: space-between;
+    align-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.MenuContainer:hover {
+    background-color: #4C4C4C;
+}
+
+.isMenuActive {
+    background-color: #4C4C4C;
+}
+
+.isSubMenuActive {
+    color: var(--primary-light);
+}
+
+.MenuLeft {
+    height: fit-content;
+    width: fit-content;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.SubMenuContainer {
+    height: fit-content;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    justify-content: space-between;
+    align-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--primary-dark);
+    cursor: pointer;
+}
+
+.SubMenuContainer:hover {
+    background-color: #4C4C4C;
+}

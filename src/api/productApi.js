@@ -8,7 +8,7 @@ const productApi = {
     },
     getById: (id) => axiosClient.get(`/products/${id}`),
     getAllCategory: () => axiosClient.get('/products/categories'),
-    searchProduct: (search) => axiosClient.get(`/products/search?q=${search}`)
+    searchProduct: (search) => axiosClient.get(`/products/search?q=${search}`),
 };
   
 export default productApi;

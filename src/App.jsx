@@ -11,6 +11,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import AuthGuard from "./utils/authGuard";
+import AdminProducts from "./components/AdminProducts/AdminProducts";
+import AdminLayout from "./pages/AdminLayout,";
 
 
 const router = createBrowserRouter(
@@ -51,6 +53,16 @@ const router = createBrowserRouter(
       path: "register",
       element: <Register />,
     },
+    {
+      path: 'admin',
+      element: <AdminLayout />,
+      children: [
+        {
+          path: 'products',
+          element: <AdminProducts  />,
+        },
+      ]
+    }
   ]
 );
 
