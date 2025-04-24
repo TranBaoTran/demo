@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import AuthGuard from "./utils/authGuard";
 import AdminProducts from "./components/AdminProducts/AdminProducts";
+import AdminCategories from "./components/AdminCategories/AdminCategories";
 import AdminLayout from "./pages/AdminLayout,";
 
 
@@ -60,6 +61,10 @@ const router = createBrowserRouter(
         {
           path: 'products',
           element: <AdminProducts  />,
+        },
+        {
+          path: 'categories',
+          element: <AdminCategories  />,
         },
       ]
     }
