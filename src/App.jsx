@@ -13,6 +13,7 @@ import {
 import AuthGuard from "./utils/authGuard";
 import AdminProducts from "./components/AdminProducts/AdminProducts";
 import AdminLayout from "./pages/AdminLayout,";
+import EditProduct from "./components/EditProduct/EditProduct";
 
 
 const router = createBrowserRouter(
@@ -60,6 +61,14 @@ const router = createBrowserRouter(
         {
           path: 'products',
           element: <AdminProducts  />,
+        },
+        {
+          path: 'addproduct',
+          element: <EditProduct  />,
+        },
+        {
+          path: 'editproduct/:id',
+          element: <EditProduct  />,
         },
       ]
     }

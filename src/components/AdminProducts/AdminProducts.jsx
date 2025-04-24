@@ -24,6 +24,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { capitalizeFirstLetter } from '../../utils/util';
+import { useNavigate } from 'react-router-dom';
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -93,7 +94,28 @@ const EnhancedTableHead = (props) => {
   );
 };
 
-const EnhancedTableToolbar = ({ numSelected }) => {
+const EnhancedTableToolbar = ({ numSelected, selected }) => {
+  const handleDelete = () => {
+    if(selected){
+      try{
+        selected.forEach(id => {
+          deleteProduct(id);
+        })
+        alert('Delte Successfully');
+      }catch (error) {
+        console.error(`Error delete ${id}:`, error);
+      }
+    }
+  }
+
+  const deleteProduct = async (id) => {
+    try {
+      const response = await productApi.deleteProduct(id);
+    } catch (error) {
+      console.error('Error delete products:', error);
+    }
+  }
+
   return (
     <Toolbar>
       {numSelected > 0 ? (
@@ -106,7 +128,7 @@ const EnhancedTableToolbar = ({ numSelected }) => {
         </Typography>
       )}
       {numSelected > 0 ? (
-        <Tooltip title="Delete">
+        <Tooltip title="Delete" onClick={handleDelete}>
           <IconButton>
             <DeleteIcon />
           </IconButton>
@@ -130,10 +152,15 @@ const AdminProducts = () => {
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   const handleEdit = (id) => {
-    console.log('Edit clicked:', id);
+    navigate(`/admin/editproduct/${id}`);
   };
+
+  const createNewProduct = () => {
+    navigate('/admin/addproduct');
+  }
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -183,7 +210,7 @@ const AdminProducts = () => {
       <div>
         <div className={styles.Headbar}>
           <p className={styles.HeadbarTitle}>Products</p>
-          <button className={styles.HeadbarButton}>
+          <button className={styles.HeadbarButton} onClick={createNewProduct}>
             <FaPlusCircle />
             Create Product
           </button>
@@ -191,7 +218,7 @@ const AdminProducts = () => {
         <div className={styles.ProductContainer}>
           <Box sx={{ width: '80%' , paddingTop: '50px', paddingBottom: '50px'}}>
             <Paper sx={{ width: '100%', mb: 2 }}>
-              <EnhancedTableToolbar numSelected={selected.length} />
+              <EnhancedTableToolbar numSelected={selected.length} selected={selected}/>
               <TableContainer>
                 <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={dense ? 'small' : 'medium'}>
                   <EnhancedTableHead

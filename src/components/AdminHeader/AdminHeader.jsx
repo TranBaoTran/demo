@@ -26,7 +26,7 @@ const AdminHeader = () => {
     <div className={styles.AdminHeader}>
       <div>
         <div className={styles.MenuContainer} style={{padding: '0'}}>
-          <img src='./Logo.png' onClick={() => navigate('/')}></img>
+          <img src='/Logo.png' onClick={() => navigate('/')}></img>
         </div>
          
         {isProductOpen ? (

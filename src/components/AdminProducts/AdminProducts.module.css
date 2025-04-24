@@ -29,6 +29,33 @@
     gap: 10px;
 }
 
+.HeadbarCancelButton {
+    background-color: #d91616;
+    padding: 10px;
+    margin-right: 20px;
+    color: var(--primary-light);
+    height: fit-content;
+    width: fit-content;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.HeadbarButton:hover {
+    color: var(--primary-light);
+    background-color: var(--primary-dark);
+}
+
+.HeadbarCancelButton:hover {
+    color: var(--primary-light);
+    background-color: var(--primary-dark);
+}
+
 .ProductContainer {
     background-color: #EFE4D6;
     display: flex;
