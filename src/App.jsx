@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import AuthGuard from "./utils/authGuard";
 import AdminProducts from "./components/AdminProducts/AdminProducts";
+import AdminCategories from "./components/AdminCategories/AdminCategories";
 import AdminLayout from "./pages/AdminLayout,";
 import EditProduct from "./components/EditProduct/EditProduct";
 
@@ -56,7 +57,9 @@ const router = createBrowserRouter(
     },
     {
       path: 'admin',
-      element: <AdminLayout />,
+      element: (<AuthGuard>
+                  <AdminLayout />
+                </AuthGuard>),
       children: [
         {
           path: 'products',
@@ -69,6 +72,10 @@ const router = createBrowserRouter(
         {
           path: 'editproduct/:id',
           element: <EditProduct  />,
+        },
+        {
+          path: 'categories',
+          element: <AdminCategories  />,
         },
       ]
     }

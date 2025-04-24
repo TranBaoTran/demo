@@ -11,7 +11,42 @@ const productApi = {
     searchProduct: (search) => axiosClient.get(`/products/search?q=${search}`),
     addProduct: (product) => axiosClient.post('/products/add', product),
     editProduct: (product, id) => axiosClient.put(`/products/${id}`, product),
-    deleteProduct: (id) => axiosClient.put(`/products/${id}`)
+    deleteProduct: (id) => axiosClient.put(`/products/${id}`),
+    getCategories: () => {
+        return axiosClient.get(`/products/category-list`);
+    },
+    
+    getAllCategoriesWithCount: async () => {
+        try {
+        const allProductsRes = await axiosClient.get(`/products?limit=0`);
+        const allProducts = allProductsRes.data.products;
+        
+        const categoriesRes = await productApi.getCategories();
+        const categories = categoriesRes.data;
+        
+        const categoryCounts = allProducts.reduce((acc, product) => {
+            acc[product.category] = (acc[product.category] || 0) + 1;
+            return acc;
+        }, {});
+        
+        return categories.map(category => ({
+            id: category,
+            name: capitalizeFirstLetter(category),
+            productCount: categoryCounts[category] || 0
+        }));
+        } 
+        catch (error) {
+            console.error('Error fetching optimized categories:', error);
+            throw error;
+        }
+    },
+
 };
+
+function capitalizeFirstLetter(string) {
+    return string.split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
   
 export default productApi;

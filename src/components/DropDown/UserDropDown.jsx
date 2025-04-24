@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styles from './DropDown.module.css';
 import { clearCart, clearToken, getToken } from '../../api/axiosClient';
 import authApi from '../../api/authApi';
+import { useNavigate } from 'react-router-dom';
 
 const UserDropDown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     if(getToken()){
@@ -44,7 +46,7 @@ const UserDropDown = () => {
         </div>  
         {isOpen && (
           <ul className={`${styles.SubMenu} ${styles.SubMenuRight}`}>
-            <li className={`${styles.SubMenuItem} ${styles.UserSubMenuItem}`}>Account</li>
+            <li className={`${styles.SubMenuItem} ${styles.UserSubMenuItem}`} onClick={() => navigate('/admin')}>To Admin</li>
             <li className={`${styles.SubMenuItem} ${styles.UserSubMenuItem}`} onClick={() => handleClick()}>Logout</li>
           </ul>
         )}
