@@ -14,7 +14,7 @@ const productApi = {
         return axiosClient.get(`/products/category-list`);
     },
     
-    getAllCategoriesWithCountOptimized: async () => {
+    getAllCategoriesWithCount: async () => {
         try {
         const allProductsRes = await axiosClient.get(`/products?limit=0`);
         const allProducts = allProductsRes.data.products;

@@ -142,7 +142,7 @@ const AdminCategories = () => {
         setCategories(JSON.parse(storedData));
       }
       else {
-        const apiData = await productApi.getAllCategoriesWithCountOptimized();
+        const apiData = await productApi.getAllCategoriesWithCount();
         setCategories(apiData);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(apiData));
       }
