@@ -1,15 +1,20 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useRef } from 'react';
 import styles from './DropDown.module.css';
 import productApi from '../../api/productApi';
 import productItemStyles from '../ProductItem/ProductItem.module.css';
 import { useNavigate } from 'react-router-dom';
+import clickOutSide from './ClickOutside';
 
 const SearchDropDown = () => {
     const [searchInput, setSearchInput] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
+    const dropdownRef = useRef(null);
+
+    clickOutSide(dropdownRef, () => setIsOpen(false));
 
     const debounce = useCallback((func, delay) => {
         let timeoutId;
@@ -62,12 +67,13 @@ const SearchDropDown = () => {
                            className={styles.SearchBarInput} 
                            placeholder='Search'
                            value={searchInput}
-                           onChange={handleInputChange}></input>
+                           onChange={handleInputChange}
+                           onClick={() => setIsOpen(true)}></input>
             </div>
-            <ul className={styles.SubMenu}>
+            {isOpen && (<ul ref={dropdownRef} className={styles.SubMenu}>
                 {error && (<li className={styles.SubMenuSearch}>Error: {error}</li>)}
                 {isLoading && (<li className={styles.SubMenuSearch}>Searching...</li>)}
-                {searchResult.length > 0 && (
+                {searchResult.length > 0 && !isLoading && (
                     searchResult.map(product => (
                         <li key={product.id} className={styles.SubMenuSearch} onClick={() => handleItemClick(product.id)}>
                             <img className={styles.SearchImage} src={product.thumbnail}></img>
@@ -82,7 +88,7 @@ const SearchDropDown = () => {
                 {!isLoading && !error && searchInput && searchResult.length === 0 && (
                     <li className={styles.SubMenuSearch}>No products found for "{searchInput}"</li>
                 )}
-            </ul>
+            </ul>)}
         </div>
     )
 }
