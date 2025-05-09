@@ -1,5 +1,6 @@
 import Header from "../components/Header/Header"
 import Footer from "../components/Footer/Footer"
+import SmallHeader from "../components/SmallHeader/SmallHeader";
 import { Outlet } from "react-router-dom";
 import { useRef } from "react";
 
@@ -13,6 +14,7 @@ const Layout = () => {
     return (
         <>
             <Header onGoToFooterClick={scrollToFooter} />
+            <SmallHeader />
             <main>
                 <Outlet />
             </main>

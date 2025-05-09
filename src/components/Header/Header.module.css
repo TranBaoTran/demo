@@ -3,7 +3,7 @@
     height: fit-content;
     background-color: var(--primary-light);
     position: sticky;
-    display: flex;
+    display: none;
     align-items: center;
     padding-top: 17px;
     padding-bottom: 17px;
@@ -117,3 +117,8 @@
     color: inherit;
 }
   
+@media only screen and (min-width: 1250px) {
+    .Header {
+        display: flex;
+    }
+}
