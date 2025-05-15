@@ -15,6 +15,7 @@ import AdminProducts from "./components/AdminProducts/AdminProducts";
 import AdminCategories from "./components/AdminCategories/AdminCategories";
 import AdminLayout from "./pages/AdminLayout,";
 import EditProduct from "./components/EditProduct/EditProduct";
+import Test from "./components/test/test";
 
 
 const router = createBrowserRouter(
@@ -54,6 +55,10 @@ const router = createBrowserRouter(
     {
       path: "register",
       element: <Register />,
+    },
+    {
+      path: "test",
+      element: <Test />,
     },
     {
       path: 'admin',
